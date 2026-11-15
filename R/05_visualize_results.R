@@ -93,7 +93,7 @@ plot <- ggplot(
     x = "Conversion rate",
     y = NULL,
     caption = paste(
-      "Synthetic randomized A/B experiment |",
+      "Synthetic two-group A/B experiment |",
       "n = 1,000 per group"
     )
   ) +

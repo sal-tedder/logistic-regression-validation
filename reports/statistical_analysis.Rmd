@@ -37,22 +37,13 @@ stopifnot(isTRUE(model$converged))
 
 # Executive Summary
 
-This project evaluates the effect of a simulated website
-redesign on customer conversion rates using binomial
-logistic regression.
+This project evaluates the effect of a simulated website redesign on customer conversion rates using binomial logistic regression.
 
-The dataset consists of 2,000 synthetic observations,
-equally allocated between control and treatment groups.
+The analysis uses a synthetic two-group A/B experiment consisting of 2,000 independently generated Bernoulli observations, with 1,000 observations in each group. Group membership was assigned deterministically, rather than through an explicit randomization procedure.
 
-The analysis examines observed conversion rates,
-estimates the treatment effect, and independently
-validates logistic regression calculations against
-R's `glm()` implementation.
+The analysis examines observed conversion rates, estimates the treatment effect, and independently validates logistic regression calculations against R's glm() implementation.
 
-The primary objective is to demonstrate reproducible
-statistical modeling, mathematical verification,
-numerical diagnostics, and statistical inference.
-
+The primary objective is to demonstrate reproducible statistical modeling, mathematical verification, numerical diagnostics, and statistical inference.
 
 # Experimental Design
 
@@ -63,8 +54,11 @@ that a visitor completes a purchase?
 
 ## Data Generation
 
-A synthetic randomized A/B experiment was simulated
-using Bernoulli-distributed conversion outcomes.
+A synthetic two-group A/B experiment was constructed using independently generated Bernoulli conversion outcomes. Group membership was assigned deterministically, with 1,000 observations in the control group and 1,000 in the treatment group.
+
+The control group's conversion probability was set to 0.10, while the treatment group's conversion probability was set to 0.15. A fixed random seed (`set.seed(2026)`) ensures reproducibility.
+
+Although the simulation represents a controlled comparison between two treatment conditions, treatment labels were not explicitly randomized. Therefore, the analysis is described as a synthetic two-group comparison rather than an implemented randomized controlled trial.
 
 The experiment includes:
 
@@ -790,13 +784,11 @@ evidence that a real website redesign improves conversions.
 
 ### Simplified Model Specification
 
-The logistic regression model contains only one binary
-predictor: treatment assignment.
+The logistic regression model contains only one binary predictor: treatment assignment.
 
-This specification is appropriate for estimating the
-unadjusted treatment effect in a randomized experiment,
-but it does not account for additional visitor characteristics
-or potential treatment-effect heterogeneity.
+This specification is appropriate for estimating the unadjusted difference in conversion odds between two independent groups. However, it does not account for additional visitor characteristics or potential treatment-effect heterogeneity.
+
+Because treatment groups were assigned deterministically in the simulation, the analysis demonstrates statistical estimation and inference rather than causal identification from an implemented randomized controlled trial.
 
 ### Independence Assumption
 
@@ -842,9 +834,7 @@ Potential extensions include:
 
 # Conclusion
 
-This project developed and independently validated a
-binomial logistic regression model using a reproducible
-synthetic randomized A/B experiment.
+This project developed and independently validated a binomial logistic regression model using a reproducible synthetic two-group A/B experiment with fixed group sizes and independently generated Bernoulli outcomes.
 
 The observed conversion rate increased from 9.7% in the
 control group to 14.9% in the treatment group, representing

@@ -4,7 +4,7 @@
 
 An end-to-end statistical analysis project demonstrating logistic regression, independent maximum likelihood validation, hypothesis testing, and reproducible research using R.
 
-This project evaluates conversion outcomes from a synthetic randomized A/B experiment and independently verifies statistical estimates against R's `glm()` implementation.
+This project evaluates conversion outcomes from a synthetic two-group A/B experiment with fixed group sizes and independently generated Bernoulli outcomes. Statistical estimates are independently validated against R's `glm()` implementation.
 
 ## Key Results
 
@@ -69,12 +69,26 @@ The project includes:
 
 The analysis uses a fixed random seed and organized R scripts to support reproducibility.
 
+
 ### Requirements
 
-- R
-- `ggplot2`
-- `rmarkdown`
-- `knitr`
+The project was developed and tested using:
+
+| Software | Tested Version |
+|---|---|
+| R | 4.3.2 |
+| ggplot2 | 3.5.2 |
+| rmarkdown | 2.29 |
+| knitr | 1.50 |
+
+The analysis uses base R for statistical modeling
+and validation. The `ggplot2` package is used for
+visualization, while `rmarkdown` and `knitr` are used
+to generate the reproducible HTML report.
+
+Package versions are documented for reproducibility.
+Other compatible versions may also work.
+
 
 ### Run the Analysis
 

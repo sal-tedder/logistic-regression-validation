@@ -98,11 +98,15 @@ The validation script contains automated checks comparing analytical estimates w
 
 ## Full Statistical Report
 
-For the complete methodology, mathematical derivations, validation tables, hypothesis tests, and limitations, see:
+For the complete methodology, mathematical derivations,
+validation tables, hypothesis tests, and limitations:
 
-[Statistical Analysis — R Markdown Source](reports/statistical_analysis.Rmd)
+**[View Full Statistical Report](https://sal-tedder.github.io/logistic-regression-validation/)**
 
-[Rendered HTML Report](reports/statistical_analysis.html)
+Additional resources:
+
+- [R Markdown Source](reports/statistical_analysis.Rmd)
+- [HTML Report Source File](reports/statistical_analysis.html)
 
 ## Limitations
 

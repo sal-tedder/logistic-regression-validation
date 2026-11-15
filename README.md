@@ -38,15 +38,22 @@ The estimated treatment odds ratio is approximately 1.63, indicating 63% higher 
 
 ## Statistical Methodology
 
+
 The binary response is modeled using logistic regression:
 
 $$
-\log\left(\frac{p_i}{1-p_i}\right)
-=
-\beta_0+\beta_1x_i
+\log\left(\frac{p_i}{1-p_i}\right) = \beta_0 + \beta_1 x_i
 $$
 
-where \(p_i\) is the probability of conversion and \(x_i\) indicates treatment assignment.
+Here:
+
+- $p_i$ is the probability of conversion.
+- $x_i$ is the binary treatment indicator.
+- $\beta_0$ is the control-group log-odds.
+- $\beta_1$ is the treatment effect on log-odds.
+
+The treatment odds ratio is $e^{\beta_1}$.
+
 
 The project includes:
 

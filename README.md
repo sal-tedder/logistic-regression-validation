@@ -14,6 +14,7 @@ This project evaluates conversion outcomes from a synthetic randomized A/B exper
 | Control conversion rate | 9.7% |
 | Treatment conversion rate | 14.9% |
 | Absolute conversion uplift | +5.2 percentage points |
+| 95% CI for absolute uplift | [2.33, 8.07] percentage points |
 | Relative conversion uplift | +53.6% |
 | Treatment odds ratio | 1.63 |
 | 95% Wald confidence interval | [1.24, 2.14] |

@@ -399,6 +399,7 @@ Estimates</a></li>
 <li><a href="#wald-hypothesis-tests" id="toc-wald-hypothesis-tests"><span class="toc-section-number">5.3</span> Wald Hypothesis Tests</a></li>
 <li><a href="#treatment-odds-ratio-and-confidence-interval" id="toc-treatment-odds-ratio-and-confidence-interval"><span class="toc-section-number">5.4</span> Treatment Odds Ratio and
 Confidence Interval</a></li>
+<li><a href="#absolute-risk-difference" id="toc-absolute-risk-difference"><span class="toc-section-number">5.5</span> Absolute Risk Difference</a></li>
 </ul></li>
 <li><a href="#likelihood-ratio-test" id="toc-likelihood-ratio-test"><span class="toc-section-number">6</span>
 Likelihood-Ratio Test</a>
@@ -979,6 +980,92 @@ knitr::kable(
 the treatment group.</p>
 <p>Because the confidence interval excludes one, the estimated treatment
 effect is statistically significant at the 5% level.</p>
+</div>
+<div id="absolute-risk-difference" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Absolute Risk
+Difference</h2>
+<p>While the odds ratio describes the relative change in conversion
+odds, the absolute risk difference measures the change in conversion
+probability.</p>
+<p>The estimated risk difference is:</p>
+<p><span class="math display">\[
+\widehat{RD} = \hat{p}_1 - \hat{p}_0
+\]</span></p>
+<p>Under independent binomial sampling, the estimated standard error
+is:</p>
+<p><span class="math display">\[
+SE(\widehat{RD}) =
+\sqrt{
+\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}
++
+\frac{\hat{p}_0(1-\hat{p}_0)}{n_0}
+}
+\]</span></p>
+<p>A 95% unpooled Wald confidence interval is:</p>
+<p><span class="math display">\[
+\widehat{RD} \pm 1.96 \times SE(\widehat{RD})
+\]</span></p>
+<pre class="r"><code># Observed group conversion rates
+p_control &lt;- c / (c + d)
+p_treatment &lt;- a / (a + b)
+
+n_control &lt;- c + d
+n_treatment &lt;- a + b
+
+# Absolute risk difference
+risk_difference &lt;- p_treatment - p_control
+
+# Estimated standard error
+se_rd &lt;- sqrt(
+  p_treatment * (1 - p_treatment) / n_treatment +
+  p_control * (1 - p_control) / n_control
+)
+
+# 95% Wald confidence interval
+z_critical &lt;- qnorm(0.975)
+
+rd_lower &lt;- risk_difference - z_critical * se_rd
+rd_upper &lt;- risk_difference + z_critical * se_rd
+
+rd_results &lt;- data.frame(
+  Metric = &quot;Absolute risk difference&quot;,
+  Estimate_pp = 100 * risk_difference,
+  Lower_95_pp = 100 * rd_lower,
+  Upper_95_pp = 100 * rd_upper
+)
+
+knitr::kable(
+  rd_results,
+  digits = 2,
+  caption = &quot;Absolute Risk Difference and 95% Wald CI&quot;
+)</code></pre>
+<table>
+<caption>Absolute Risk Difference and 95% Wald CI</caption>
+<thead>
+<tr class="header">
+<th align="left">Metric</th>
+<th align="right">Estimate_pp</th>
+<th align="right">Lower_95_pp</th>
+<th align="right">Upper_95_pp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Absolute risk difference</td>
+<td align="right">5.2</td>
+<td align="right">2.33</td>
+<td align="right">8.07</td>
+</tr>
+</tbody>
+</table>
+<p>The estimated absolute increase in conversion probability is 5.2
+percentage points, with a 95% Wald confidence interval of approximately
+2.33 to 8.07 percentage points.</p>
+<p>This translates to approximately 23 to 81 additional conversions per
+1,000 visitors under comparable conditions.</p>
+<p>The interval uses a large-sample Wald approximation. Alternative
+score-based intervals may offer improved coverage, particularly with
+smaller samples or extreme conversion probabilities.</p>
 </div>
 </div>
 <div id="likelihood-ratio-test" class="section level1" number="6">

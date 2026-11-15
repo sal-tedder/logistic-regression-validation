@@ -273,6 +273,33 @@ cat("Relative conversion-rate increase:",
 
 
 # ------------------------------------------------------------
+# 12A. Confidence interval for absolute risk difference
+# ------------------------------------------------------------
+
+# Estimated difference in conversion probabilities
+risk_difference <- treatment_rate - control_rate
+
+# Standard error under independent binomial sampling
+se_risk_difference <- sqrt(
+  treatment_rate * (1 - treatment_rate) / (a + b) +
+    control_rate * (1 - control_rate) / (c + d)
+)
+
+# 95% unpooled Wald confidence interval
+rd_lower <- risk_difference - qnorm(0.975) * se_risk_difference
+rd_upper <- risk_difference + qnorm(0.975) * se_risk_difference
+
+cat("Absolute risk difference:",
+    sprintf("%.2f percentage points",
+            100 * risk_difference), "\n")
+
+cat("95% Wald CI:",
+    sprintf("[%.2f, %.2f] percentage points",
+            100 * rd_lower,
+            100 * rd_upper), "\n")
+
+
+# ------------------------------------------------------------
 # 13. Final validation summary
 # ------------------------------------------------------------
 
